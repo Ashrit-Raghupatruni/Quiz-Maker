@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QuizMaker (HTML/CSS/JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">QuizMaker</div>
+    <nav>
+      <button class="nav-btn" data-target="home-section">Home</button>
+      <button class="nav-btn" data-target="create-section">Create Quiz</button>
+      <button class="nav-btn" data-target="list-section">Browse Quizzes</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home-section" class="page-section active">
+      <h1>Welcome to QuizMaker</h1>
+      <p>Create, save, and take quizzes directly in your browser.</p>
+      <div class="home-actions">
+        <button class="primary" data-target="create-section">Create a Quiz</button>
+        <button class="secondary" data-target="list-section">Browse Quizzes</button>
+      </div>
+    </section>
+
+    <!-- CREATE QUIZ -->
+    <section id="create-section" class="page-section">
+      <h2>Create a New Quiz</h2>
+      <form id="quiz-form">
+        <div class="form-group">
+          <label for="quiz-title">Quiz Title</label>
+          <input type="text" id="quiz-title" required placeholder="e.g. JavaScript Basics" />
+        </div>
+
+        <div class="form-group">
+          <label for="quiz-category">Category</label>
+          <select id="quiz-category">
+            <option value="General">General</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quiz-time-limit">Time Limit (minutes, optional)</label>
+          <input type="number" id="quiz-time-limit" min="0" placeholder="e.g. 5" />
+          <small class="muted">Leave empty or 0 for no timer.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="quiz-description">Description (optional)</label>
+          <textarea id="quiz-description" rows="2" placeholder="Short description..."></textarea>
+        </div>
+
+        <h3>Questions</h3>
+        <div id="questions-container"></div>
+
+        <button type="button" id="add-question-btn" class="secondary">
+          + Add Question
+        </button>
+
+        <div class="form-actions">
+          <button type="submit" class="primary">Save Quiz</button>
+          <button type="reset" class="secondary" id="reset-form-btn">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- QUIZ LIST -->
+    <section id="list-section" class="page-section">
+      <h2>Available Quizzes</h2>
+      <div class="list-filters">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search by title..."
+        />
+        <select id="category-filter" class="search-input">
+          <option value="all">All categories</option>
+        </select>
+      </div>
+      <div id="quiz-list" class="quiz-list"></div>
+      <p id="no-quizzes-msg" class="muted"></p>
+    </section>
+
+    <!-- TAKE QUIZ -->
+    <section id="take-section" class="page-section">
+      <button class="back-btn" id="back-to-list">&larr; Back to Quiz List</button>
+      <h2 id="take-quiz-title"></h2>
+      <p id="take-quiz-description" class="muted"></p>
+
+      <div class="take-header-row">
+        <div id="question-progress" class="muted"></div>
+        <div id="timer-display" class="timer-display muted"></div>
+      </div>
+
+      <div id="question-area">
+        <h3 id="question-text"></h3>
+        <form id="question-form">
+          <div id="options-container"></div>
+        </form>
+        <div id="question-feedback" class="feedback"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button id="prev-question-btn" class="secondary">Previous</button>
+        <button id="next-question-btn" class="primary">Next</button>
+        <button id="finish-quiz-btn" class="primary danger">Finish Quiz</button>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results-section" class="page-section">
+      <h2>Quiz Results</h2>
+      <p id="score-text" class="score-text"></p>
+      <div id="results-details"></div>
+      <button id="back-to-quizzes-btn" class="primary">
+        Back to Quizzes
+      </button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Data is stored locally in your browser using localStorage.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
